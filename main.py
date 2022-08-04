@@ -24,7 +24,7 @@ def denoise(y: [float]):
 
 
 def aggregate(path: str, titles: [str], separate: bool):
-    top = 0
+    bottom = 0
     plt.xlabel("2θ")
     plt.ylabel("Intensity")
     plt.yticks([])
@@ -32,9 +32,9 @@ def aggregate(path: str, titles: [str], separate: bool):
         x, y = readxy(path, title)
         yi = denoise(y)
         if separate:  # separate the graphs above each other
-            bottom = min(yi)
-            yi += top - bottom + margin
             top = max(yi)
+            yi += -top + bottom - margin
+            bottom = min(yi)
         plt.plot(x, yi)
 
 
@@ -52,4 +52,4 @@ def export(titles: [str], separate: bool, group: str = None, out: str = None):
     plt.close(fig)
 
 
-export(["ZIF-8-MK", "TiO2-P25", "CAT-1", "CAT-2", "CAT-3"], True, "group1")
+export(["CAT-3", "CAT-2", "CAT-1", "TiO2-P25", "ZIF-8-MK"], True, "group1")
