@@ -52,4 +52,4 @@ def export(titles: [str], separate: bool, group: str = None, out: str = None):
     plt.close(fig)
 
 
-export(["ZIF-8-MK-3-5", "TiO2-P25", "LB-CAT-1-D6", "LB-CAT-2-2", "LB-CAT-3-D6"], True, "group1")
+export(["ZIF-8-MK", "TiO2-P25", "CAT-1", "CAT-2", "CAT-3"], True, "group1")
