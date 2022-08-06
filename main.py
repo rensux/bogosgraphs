@@ -80,7 +80,6 @@ def exportcsv(title: str, read=readcsv, minorTicks=False, flter=None, xliml=None
     if minorTicks:
         ticks, labels = calcTicks(min(x), max(x), 0.1)
         plt.xticks(ticks, labels)
-
     if xliml is not None:
         plt.xlim(left=xliml)
     if xlimr is not None:
@@ -123,10 +122,10 @@ exportgroup(["CAT-3", "CAT-2", "CAT-1", "TiO2-P25", "ZIF-8-MK"], True, "group1")
 
 
 reflectfilter = createfilter(1.5, 6)
-exportcsv("cat-1-ref", readReflectance, flter=reflectfilter, xlimr=6)
-exportcsv("cat-2-ref", readReflectance, flter=reflectfilter, xlimr=6)
-exportcsv("cat-3-ref", readReflectance, flter=reflectfilter, xlimr=6)
-exportcsv("zif-8-mk-ref", readReflectance, flter=reflectfilter, xlimr=6)
+exportcsv("cat-1-ref", readReflectance, True, reflectfilter, xlimr=6)
+exportcsv("cat-2-ref", readReflectance, True, reflectfilter, xlimr=6)
+exportcsv("cat-3-ref", readReflectance, True, reflectfilter, xlimr=6)
+exportcsv("zif-8-mk-ref", readReflectance, True, reflectfilter, xlimr=6)
 
 csvfilter = createfilter(200, 1000)
 exportcsv("cat-1", flter=csvfilter, xliml=200)
