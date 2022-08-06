@@ -64,7 +64,7 @@ def exportgroup(titles: [str], separate: bool, group: str = None, out: str = Non
     path = f'data/{"" if group is None else group + "/"}'
     aggregate(path, titles, separate)
     plt.legend(titles, bbox_to_anchor=(0, 1.02, 1, 0.2), loc="lower left", mode="expand", ncol=len(titles))
-    plt.savefig(f'img/{out}.svg')
+    plt.savefig(f'img/{out}.png', dpi=300)
     plt.close(fig)
 
 
@@ -84,7 +84,7 @@ def exportcsv(title: str, read=readcsv, minorTicks=False, flter=None, xliml=None
         plt.xlim(left=xliml)
     if xlimr is not None:
         plt.xlim(right=xlimr)
-    plt.savefig(f'img/{out}.svg')
+    plt.savefig(f'img/{out}.png', dpi=300)
     plt.close(fig)
 
 
