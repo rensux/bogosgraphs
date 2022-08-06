@@ -68,11 +68,7 @@ def exportgroup(titles: [str], separate: bool, group: str = None, out: str = Non
     plt.close(fig)
 
 
-def exportreflect(title: str, flter=None):
-    exportcsv(title, readReflectance, True, flter=flter)
-
-
-def exportcsv(title: str, read=readcsv, minorTicks=False, flter=None):
+def exportcsv(title: str, read=readcsv, minorTicks=False, flter=None, xliml=None, xlimr=None):
     fig = plt.figure()
     out = f'{title}_N={N}_Wn={Wn}'
     x, y = read('data/', title)
@@ -84,6 +80,11 @@ def exportcsv(title: str, read=readcsv, minorTicks=False, flter=None):
     if minorTicks:
         ticks, labels = calcTicks(min(x), max(x), 0.1)
         plt.xticks(ticks, labels)
+
+    if xliml is not None:
+        plt.xlim(left=xliml)
+    if xlimr is not None:
+        plt.xlim(right=xlimr)
     plt.savefig(f'img/{out}.svg')
     plt.close(fig)
 
@@ -122,13 +123,13 @@ exportgroup(["CAT-3", "CAT-2", "CAT-1", "TiO2-P25", "ZIF-8-MK"], True, "group1")
 
 
 reflectfilter = createfilter(1.5, 6)
-exportreflect("cat-1-ref", reflectfilter)
-exportreflect("cat-2-ref", reflectfilter)
-exportreflect("cat-3-ref", reflectfilter)
-exportreflect("zif-8-mk-ref", reflectfilter)
+exportcsv("cat-1-ref", readReflectance, flter=reflectfilter, xlimr=6)
+exportcsv("cat-2-ref", readReflectance, flter=reflectfilter, xlimr=6)
+exportcsv("cat-3-ref", readReflectance, flter=reflectfilter, xlimr=6)
+exportcsv("zif-8-mk-ref", readReflectance, flter=reflectfilter, xlimr=6)
 
 csvfilter = createfilter(200, 1000)
-exportcsv("cat-1", flter=csvfilter)
-exportcsv("cat-2", flter=csvfilter)
-exportcsv("cat-3", flter=csvfilter)
-exportcsv("zif-8-mk", flter=csvfilter)
+exportcsv("cat-1", flter=csvfilter, xliml=200)
+exportcsv("cat-2", flter=csvfilter, xliml=200)
+exportcsv("cat-3", flter=csvfilter, xliml=200)
+exportcsv("zif-8-mk", flter=csvfilter, xliml=200)
