@@ -43,7 +43,7 @@ def denoise(y: [float]):
 
 def aggregate(path: str, titles: [str], separate: bool):
     bottom = 0
-    plt.xlabel("2θ")
+    plt.xlabel("2θ (degrees)")
     plt.ylabel("Intensity")
     plt.yticks([])
     for title in titles:
